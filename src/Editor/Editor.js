@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Editor.module.css";
+import InputControl from "../Components/InputControl/InputControl";
 
 export const Editor = ({ sections }) => {
   const [activeSectionKey, setActiveSectionKey] = useState(
@@ -22,7 +23,7 @@ export const Editor = ({ sections }) => {
       </div>
 
       <div className={styles.body}>
-        
+            <InputControl label = 'Title' placeholder='Enter Text'/>
       </div>
     </div>
   );

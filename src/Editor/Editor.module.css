@@ -28,3 +28,10 @@
     border-bottom: 2px solid gold;
     color: gold;
 }
+
+.container .body{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
