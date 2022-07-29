@@ -1,0 +1,30 @@
+.container{
+    min-width: 550px;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    padding-top: 5px;
+}
+
+.header{
+    display: flex;
+    gap:10px;
+    overflow-x: auto;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.header .section{
+    padding: 10px;
+    border-radius: 2px solid transparent;
+    font-weight: 500;
+    font-size: 1rem;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.header .active{
+    border-bottom: 2px solid gold;
+    color: gold;
+}
