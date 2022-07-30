@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Editor.module.css";
 import InputControl from "../Components/InputControl/InputControl";
+import { X } from "react-feather";
 
 export const Editor = ({ sections }) => {
   const [activeSectionKey, setActiveSectionKey] = useState(
@@ -238,6 +239,17 @@ export const Editor = ({ sections }) => {
 
       <div className={styles.body}>
             <InputControl label = 'Title' placeholder='Enter Text'/>
+
+            <div className={styles.chips}>
+              <div className={styles.chip}>
+                <p>Project 1</p>
+                <X/>
+              </div>
+              <div className={styles.chip}>
+                <p>Project 2</p>
+                <X/>
+              </div>
+            </div>
             {generateBody()}
       </div>
     </div>

@@ -56,3 +56,38 @@
 .detail .row > div{
     flex: 1;
 }
+
+.chips{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.chip{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding: 4px 8px;
+    background-color: #808080;
+    border-radius: 20px;
+}
+
+.chip p{
+    font-weight: 500;
+    line-height: 1.25rem;
+    color: #fff;
+}
+
+.chip svg{
+    color: #fff;
+    height: 18px;
+    width: 18px;
+    cursor: pointer;
+}
+
+
+.chip .active{
+    background-color: #3333;
+}
+
+
