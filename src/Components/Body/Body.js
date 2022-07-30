@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import styles from './Body.module.css'
 import { ArrowDown } from 'react-feather'
@@ -54,6 +54,9 @@ export const Body = () => {
           detail: "",
         },
       });
+      useEffect(()=>{
+        console.log(resumeInformation)
+      },[resumeInformation])
   return (
     <div className={styles.container}>
         <p className={styles.heading}>Build Resume</p>

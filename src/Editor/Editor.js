@@ -1,3 +1,4 @@
+import userEvent from "@testing-library/user-event";
 import React, { useEffect, useState } from "react";
 import { X } from "react-feather";
 
@@ -40,7 +41,7 @@ function Editor(props) {
       <div className={styles.row}>
         <InputControl
           label="Title"
-          placeholder="Enter title eg. Frontend developer"
+          placeholder="Enter Title eg. Frontend developer"
           value={values.title}
           onChange={(event) =>
             setValues((prev) => ({ ...prev, title: event.target.value }))
@@ -48,7 +49,7 @@ function Editor(props) {
         />
         <InputControl
           label="Company Name"
-          placeholder="Enter company name eg. amazon"
+          placeholder="Enter company Name"
           value={values.companyName}
           onChange={(event) =>
             setValues((prev) => ({ ...prev, companyName: event.target.value }))
@@ -123,7 +124,7 @@ function Editor(props) {
         <InputControl
           label="Title"
           value={values.title}
-          placeholder="Enter title eg. Chat app"
+          placeholder="Enter App Name"
           onChange={(event) =>
             setValues((prev) => ({ ...prev, title: event.target.value }))
           }
@@ -149,7 +150,7 @@ function Editor(props) {
         <InputControl
           label="Github Link"
           value={values.github}
-          placeholder="Enter github link of project"
+          placeholder="Enter github repo link of project"
           onChange={(event) =>
             setValues((prev) => ({ ...prev, github: event.target.value }))
           }
@@ -227,7 +228,7 @@ function Editor(props) {
       <div className={styles.row}>
         <InputControl
           label="Name"
-          placeholder="Enter your full name eg. Aashu"
+          placeholder="Enter your full name"
           value={values.name}
           onChange={(event) =>
             setValues((prev) => ({ ...prev, name: event.target.value }))
@@ -483,7 +484,6 @@ function Editor(props) {
 
   
 
-  
 
   useEffect(() => {
     const activeInfo = information[sections[activeSectionKey]];
@@ -492,25 +492,32 @@ function Editor(props) {
     setActiveDetailIndex(0);
     setValues({
       name: activeInfo?.detail?.name || "",
+
       overview: activeInfo?.details
         ? activeInfo.details[0]?.overview || ""
         : "",
+
       link: activeInfo?.details ? activeInfo.details[0]?.link || "" : "",
       certificationLink: activeInfo?.details
         ? activeInfo.details[0]?.certificationLink || ""
         : "",
+
       companyName: activeInfo?.details
         ? activeInfo.details[0]?.companyName || ""
         : "",
+
       college: activeInfo?.details
         ? activeInfo.details[0]?.college || ""
         : "",
+
       location: activeInfo?.details
         ? activeInfo.details[0]?.location || ""
         : "",
+
       startDate: activeInfo?.details
         ? activeInfo.details[0]?.startDate || ""
         : "",
+
       endDate: activeInfo?.details ? activeInfo.details[0]?.endDate || "" : "",
       points: activeInfo?.details
         ? activeInfo.details[0]?.points
@@ -519,15 +526,20 @@ function Editor(props) {
         : activeInfo?.points
         ? [...activeInfo.points]
         : "",
+
       title: activeInfo?.details
         ? activeInfo.details[0]?.title || ""
         : activeInfo?.detail?.title || "",
+
       linkedin: activeInfo?.detail?.linkedin || "",
+
       github: activeInfo?.details
         ? activeInfo.details[0]?.github || ""
         : activeInfo?.detail?.github || "",
+
       phone: activeInfo?.detail?.phone || "",
       email: activeInfo?.detail?.email || "",
+
       summary: typeof activeInfo?.detail !== "object" ? activeInfo.detail : "",
       other: typeof activeInfo?.detail !== "object" ? activeInfo.detail : "",
     });

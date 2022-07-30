@@ -21,9 +21,9 @@ input{
 }
 
 input:hover{
-    border: 2px solid #adadad;
+    border: 1px solid #adadad;
 }
 
 input:focus{
-    border: 2px solid gold;
+    border: 1px solid gold;
 }
