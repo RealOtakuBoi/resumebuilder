@@ -58,7 +58,10 @@
         color: #fff;
         text-decoration: none;
       }
-     
+    
+    .toolbar button:active{
+        transform: scale(1.1);
+    }
 
 
 .toolbar svg{

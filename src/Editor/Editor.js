@@ -231,7 +231,8 @@ export const Editor = ({ sections, information }) => {
   };
 
   useEffect(() => {
-    setActiveInformation(information[sections[activeSectionKey]])
+    setActiveInformation(information[sections[activeSectionKey]]);
+    setSectionTitle(sections[activeSectionKey]);
   },[activeSectionKey])
 
 
@@ -252,7 +253,7 @@ export const Editor = ({ sections, information }) => {
       </div>
 
       <div className={styles.body}>
-            <InputControl label = 'Title' placeholder='Enter Text' value={sectionTitle}/>
+            <InputControl label = 'Title' placeholder='Enter Text' value={sectionTitle} onChange={(e) => setSectionTitle(e.target.value)}/>
 
             <div className={styles.chips}>
               
@@ -268,6 +269,8 @@ export const Editor = ({ sections, information }) => {
 
             </div>
             {generateBody()}
+
+            <button>Save</button>
       </div>
     </div>
   );
