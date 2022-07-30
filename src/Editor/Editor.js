@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Editor.module.css";
 import InputControl from "../Components/InputControl/InputControl";
 import { X } from "react-feather";
 
-export const Editor = ({ sections }) => {
+export const Editor = ({ sections, information }) => {
   const [activeSectionKey, setActiveSectionKey] = useState(
     Object.keys(sections)[0]
   );
+
+  const [activeInformation, setActiveInformation] = useState(
+    information[sections[Object.keys(sections)[0]]]
+  );
+
+  const [sectionTitle, setSectionTitle] = useState(
+    sections[Object.keys(sections)[0]]
+  )
 
   const workExpBody = (
     <div className={styles.detail}>
@@ -221,6 +229,12 @@ export const Editor = ({ sections }) => {
         return null;
     }
   };
+
+  useEffect(() => {
+    setActiveInformation(information[sections[activeSectionKey]])
+  },[activeSectionKey])
+
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -238,17 +252,20 @@ export const Editor = ({ sections }) => {
       </div>
 
       <div className={styles.body}>
-            <InputControl label = 'Title' placeholder='Enter Text'/>
+            <InputControl label = 'Title' placeholder='Enter Text' value={sectionTitle}/>
 
             <div className={styles.chips}>
-              <div className={styles.chip}>
-                <p>Project 1</p>
-                <X/>
-              </div>
-              <div className={styles.chip}>
-                <p>Project 2</p>
-                <X/>
-              </div>
+              
+                {
+                  activeInformation?.details ?
+                  activeInformation.details?.map((item, index) => 
+                    <div className={styles.chip} key = {item.title+index}>
+                    <p>{sections[activeSectionKey]} {index+1}</p>
+                    <X/>
+                    </div>
+                  )
+                  : ''}
+
             </div>
             {generateBody()}
       </div>

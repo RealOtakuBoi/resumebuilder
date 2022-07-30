@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import styles from './Body.module.css'
 import { ArrowDown } from 'react-feather'
 import { Editor } from '../../Editor/Editor'
@@ -15,6 +16,44 @@ export const Body = () => {
         summary : 'Summary',
         other : 'Other'
     }
+
+    const [resumeInformation, setResumeInformation] = useState({
+        [sections.basicInfo]: {
+          id: sections.basicInfo,
+          sectionTitle: sections.basicInfo,
+          detail: {},
+        },
+        [sections.workExp]: {
+          id: sections.workExp,
+          sectionTitle: sections.workExp,
+          details: [],
+        },
+        [sections.projects]: {
+          id: sections.projects,
+          sectionTitle: sections.projects,
+          details: [],
+        },
+        [sections.education]: {
+          id: sections.education,
+          sectionTitle: sections.education,
+          details: [],
+        },
+        [sections.achievments]: {
+          id: sections.achievments,
+          sectionTitle: sections.achievments,
+          points: [],
+        },
+        [sections.summary]: {
+          id: sections.summary,
+          sectionTitle: sections.summary,
+          detail: "",
+        },
+        [sections.other]: {
+          id: sections.other,
+          sectionTitle: sections.other,
+          detail: "",
+        },
+      });
   return (
     <div className={styles.container}>
         <p className={styles.heading}>Build Resume</p>
@@ -34,7 +73,7 @@ export const Body = () => {
             <button><ArrowDown/>Download</button>
         </div>
         <div className={styles.main}>
-            <Editor sections = {sections}/>
+            <Editor sections = {sections} information = {resumeInformation}/>
         </div>
     </div>
   )
