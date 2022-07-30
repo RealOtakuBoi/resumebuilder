@@ -355,9 +355,61 @@ export const Editor = ({ sections, information }) => {
     }
   };
 
+  const handleSubmission = () => {
+    console.log(values)
+  }
+
   useEffect(() => {
-    setActiveInformation(information[sections[activeSectionKey]]);
+    const activeInfo = information[sections[activeSectionKey]]
+    setActiveInformation(activeInfo);
     setSectionTitle(sections[activeSectionKey]);
+    setValues({
+      name: activeInformation?.detail?.name || '',
+
+      overview: activeInfo?.details
+      ? activeInfo.details[0]?.overview || ""
+      : "",
+
+      link : activeInfo?.details
+      ? activeInfo.details[0]?.link || ""
+      : "",
+
+      certificateLink: activeInfo?.details
+      ? activeInfo.details[0]?.certificateLink || ""
+      : "",
+
+      startDate: activeInfo?.details
+      ? activeInfo.details[0]?.startDate || ""
+      : "",
+
+      endDate: activeInfo?.details
+      ? activeInfo.details[0]?.endDate || ""
+      : "",
+
+      points: activeInfo?.details
+      ? activeInfo.details[0]?.points
+        ? [...activeInfo.details[0]?.points]
+        : ""
+      : activeInfo?.points
+      ? [...activeInfo.points]
+      : "",
+
+      title: activeInfo?.details
+      ? activeInfo.details[0]?.title || ""
+      : activeInfo?.detail?.title || "",
+
+      linkedin: activeInfo?.detail?.linkedin || '',
+
+      github: activeInfo?.details
+        ? activeInfo.details[0]?.github || ""
+        : activeInfo?.detail?.github || "",
+
+      phone: activeInfo?.detail?.phone || '',
+      email: activeInfo?.detail?.email || '',
+
+      summary: typeof activeInfo?.detail !== "object" ? activeInfo.detail : "",
+      other: typeof activeInfo?.detail !== "object" ? activeInfo.detail : "",
+    })
   },[activeSectionKey])
 
 
@@ -395,7 +447,7 @@ export const Editor = ({ sections, information }) => {
             </div>
             {generateBody()}
 
-            <button>Save</button>
+            <button onClick={handleSubmission}>Save</button>
       </div>
     </div>
   );
