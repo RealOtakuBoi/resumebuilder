@@ -206,11 +206,11 @@ export const Editor = ({ sections }) => {
         return basicInfoBody;
       case sections.workExp:
         return workExpBody;
-      case sections.project:
+      case sections.projects:
         return projectBody;
       case sections.education:
         return educationBody;
-      case sections.achievement:
+      case sections.achievments:
         return achievementsBody;
       case sections.summary:
         return summaryBody;
