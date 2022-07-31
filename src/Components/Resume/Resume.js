@@ -9,8 +9,35 @@ import { Linkedin } from 'react-feather'
 import { AtSign } from 'react-feather'
 import { Phone } from 'react-feather'
 
-function Resume() {
+function Resume(props) {
+
+    const workExpSection = (<div className={`${Styles.section} ${Styles.workExp}`}>
+        <div className={Styles.sectionTitle}>Work Experience</div>
+    </div>)
+
+const projectsSection = (<div className={`${Styles.section} ${Styles.projects}`}>
+<div className={Styles.sectionTitle}>Projects</div>
+</div>)
+
+const educationSection = (<div className={`${Styles.section} ${Styles.education}`}>
+        <div className={Styles.sectionTitle}>Education</div>
+    </div>)
+
+const achievmentsSection = (<div className={`${Styles.section} ${Styles.achievments}`}>
+<div className={Styles.sectionTitle}>Achievments</div>
+</div>)
+
+const otherSection = (<div className={`${Styles.section} ${Styles.other}`}>
+<div className={Styles.sectionTitle}>Other</div>
+</div>)
+
+const summarySection = (<div className={`${Styles.section} ${Styles.summary}`}>
+<div className={Styles.sectionTitle}>Summary</div>
+</div>)
+
+    
   return (
+
     <div className={Styles.container}>
         <div className={Styles.header}>
             <p className={Styles.heading}>Name</p>
