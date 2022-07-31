@@ -484,18 +484,40 @@ function Editor(props) {
 
 
   const handleAddNew = () => {
-    const details = activeInformation?.details
-    if(!details) return;
-    details.push({});
+    const details = activeInformation?.details;
+    if (!details) return;
     const lastDetail = details.slice(-1)[0];
-    if(!Object.keys(lastDetail))return;
-    props.setInformation(prev => ({...prev,[sections[activeSectionKey]]:{...information[sections[activeSectionKey]],
-      details:details
-    },
-  }));
-    setActiveDetailIndex(details?.length)
-  }
+    if (!Object.keys(lastDetail).length) return;
+    details?.push({});
 
+    props.setInformation((prev) => ({
+      ...prev,
+      [sections[activeSectionKey]]: {
+        ...information[sections[activeSectionKey]],
+        details: details,
+      },
+    }));
+    setActiveDetailIndex(details?.length - 1);
+  };
+
+
+  const handleDeleteDetail = (index) => {
+    const details = activeInformation?.details
+    ? [...activeInformation?.details]
+    : "";
+  if (!details) return;
+  details.splice(index, 1);
+  props.setInformation((prev) => ({
+    ...prev,
+    [sections[activeSectionKey]]: {
+      ...information[sections[activeSectionKey]],
+      details: details,
+    },
+  }))
+
+  setActiveDetailIndex((prev) => (prev === index ? 0 : prev - 1));
+};
+  
   
 
 
@@ -622,7 +644,7 @@ function Editor(props) {
                   <p>
                     {sections[activeSectionKey]} {index + 1}
                   </p>
-                  <X/>
+                  <X onClick={() => handleDeleteDetail(index)}/>
                 </div>
               ))
             : ""}
