@@ -53,18 +53,24 @@
         cursor: pointer;
       }
 
-      .toolbar button:hover {
-        background-position: right center;
-        color: #fff;
-        text-decoration: none;
-      }
-    
-    .toolbar button:active{
-        transform: scale(1.1);
+    .toolbar button:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
     }
+
+.toolbar button:active{
+    transform: scale(1.1);
+}
 
 
 .toolbar svg{
     width: 20px;
     height: 20px;
+}
+
+.main{
+    display: flex;
+    gap: 30px;
+    width: 100%;
 }

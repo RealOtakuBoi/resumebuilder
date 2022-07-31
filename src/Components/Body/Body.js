@@ -3,6 +3,7 @@ import { useState } from 'react'
 import styles from './Body.module.css'
 import { ArrowDown } from 'react-feather'
 import Editor from '../../Editor/Editor'
+import Resume from '../Resume/Resume'
 
 export const Body = () => {
 
@@ -77,6 +78,7 @@ export const Body = () => {
         </div>
         <div className={styles.main}>
             <Editor sections = {sections} information = {resumeInformation} setInformation = {setResumeInformation}/>
+            <Resume/>
         </div>
     </div>
   )
