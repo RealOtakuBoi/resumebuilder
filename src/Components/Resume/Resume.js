@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 
 import Styles from "./Resume.module.css";
 
@@ -8,7 +8,7 @@ import { AtSign } from "react-feather";
 import { Phone } from "react-feather";
 import { Paperclip } from "react-feather";
 
-function Resume(props) {
+const Resume = forwardRef((props,ref)=> {
     const information = props.information;
     const sections = props.sections;
   const [column, setColumn] = useState([[], []]);
@@ -72,7 +72,7 @@ function Resume(props) {
                     <Calendar /> {getFormattedDate(item.startDate)}-
                     {getFormattedDate(item.endDate)}
                   </div>   ) : (
-                      ''
+                      <div/>
                   )}
               
 
@@ -199,7 +199,7 @@ function Resume(props) {
                       <Calendar /> {getFormattedDate(item.startDate)}-
                       {getFormattedDate(item.endDate)}
                     </div>   ) : (
-                        ''
+                        <div/>
                     )}
             </div>
             ))
@@ -317,6 +317,7 @@ function Resume(props) {
   },[props.activeColor])
 
   return (
+    <div ref={ref}>
     <div ref={containerRef} className={Styles.container}>
       <div className={Styles.header}>
         <p className={Styles.heading}>{info.basicInfo?.detail?.name}</p>
@@ -367,7 +368,8 @@ function Resume(props) {
         }</div>
       </div>
     </div>
+    </div>
   );
-}
+});
 
 export default Resume;

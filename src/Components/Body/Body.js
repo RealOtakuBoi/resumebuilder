@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useState } from 'react'
 import styles from './Body.module.css'
 import { ArrowDown } from 'react-feather'
 import Editor from '../../Editor/Editor'
 import Resume from '../Resume/Resume'
+import ReactToPrint from 'react-to-print'
 
 export const Body = () => {
 
@@ -19,6 +20,8 @@ export const Body = () => {
     }
 
     const[activeColor, setActiveColor] = useState(colors[0]);
+
+    const resumeRef = useRef();
 
     const [resumeInformation, setResumeInformation] = useState({
         [sections.basicInfo]: {
@@ -79,11 +82,20 @@ export const Body = () => {
                 <span className={styles.color}></span>
                 <span className={styles.color}></span>
             </div>
-            <button><ArrowDown/>Download</button>
+            
+            <ReactToPrint
+              trigger={()=> {
+                return(
+                  <button><ArrowDown/>Download</button>
+                )
+              }}
+              content={() => resumeRef.current}
+            
+            />
         </div>
         <div className={styles.main}>
             <Editor sections = {sections} information = {resumeInformation} setInformation = {setResumeInformation}/>
-            <Resume information = {resumeInformation} sections = {sections}  activeColor={activeColor}/>
+            <Resume ref={resumeRef} information = {resumeInformation} sections = {sections}  activeColor={activeColor}/>
         </div>
     </div>
   )
