@@ -482,7 +482,6 @@ function Editor(props) {
     }
   };
 
-
   const handleAddNew = () => {
     const details = activeInformation?.details;
     if (!details) return;
@@ -500,26 +499,22 @@ function Editor(props) {
     setActiveDetailIndex(details?.length - 1);
   };
 
-
   const handleDeleteDetail = (index) => {
     const details = activeInformation?.details
-    ? [...activeInformation?.details]
-    : "";
-  if (!details) return;
-  details.splice(index, 1);
-  props.setInformation((prev) => ({
-    ...prev,
-    [sections[activeSectionKey]]: {
-      ...information[sections[activeSectionKey]],
-      details: details,
-    },
-  }))
+      ? [...activeInformation?.details]
+      : "";
+    if (!details) return;
+    details.splice(index, 1);
+    props.setInformation((prev) => ({
+      ...prev,
+      [sections[activeSectionKey]]: {
+        ...information[sections[activeSectionKey]],
+        details: details,
+      },
+    }));
 
-  setActiveDetailIndex((prev) => (prev === index ? 0 : prev - 1));
-};
-  
-  
-
+    setActiveDetailIndex((prev) => (prev === index ? 0 : prev - 1));
+  };
 
   useEffect(() => {
     const activeInfo = information[sections[activeSectionKey]];
@@ -542,9 +537,7 @@ function Editor(props) {
         ? activeInfo.details[0]?.companyName || ""
         : "",
 
-      college: activeInfo?.details
-        ? activeInfo.details[0]?.college || ""
-        : "",
+      college: activeInfo?.details ? activeInfo.details[0]?.college || "" : "",
 
       location: activeInfo?.details
         ? activeInfo.details[0]?.location || ""
@@ -644,9 +637,12 @@ function Editor(props) {
                   <p>
                     {sections[activeSectionKey]} {index + 1}
                   </p>
-                  <X onClick={(e) => {
-                    e.stopPropagation();
-                    handleDeleteDetail(index)}}/>
+                  <X
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeleteDetail(index);
+                    }}
+                  />
                 </div>
               ))
             : ""}

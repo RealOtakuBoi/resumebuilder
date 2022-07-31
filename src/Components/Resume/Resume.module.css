@@ -1,161 +1,160 @@
-.container{
-    min-width: 800px;
-    max-width: 850px;
-    min-height: 900px;
-    margin: 0 auto;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    flex: 1.2;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    padding: 30px;
-    gap: 30px;
+.container {
+  min-width: 800px;
+  max-width: 850px;
+  min-height: 900px;
+  margin: 0 auto;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  flex: 1.2;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  padding: 30px;
+  gap: 30px;
 
-    --color: #3a7bd5;
+  --color: #3a7bd5;
 }
 
-.header{
-    display: flex;
-    flex-direction: column;
-    /* gap:10px; */
+.header {
+  display: flex;
+  flex-direction: column;
+  /* gap:10px; */
 }
 
-.header .heading{
-    font-size: 2.7rem;
-    font-weight: 500;
-    text-transform: capitalize;
+.header .heading {
+  font-size: 2.7rem;
+  font-weight: 500;
+  text-transform: capitalize;
 }
 
-.header .subHeading{
-    color: var(--color);
-    font-weight: 500;
-    font-size: 1.1rem;
+.header .subHeading {
+  color: var(--color);
+  font-weight: 500;
+  font-size: 1.1rem;
 }
 
-.header .links{
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    row-gap: 10px;
-    margin-top: 20px;
+.header .links {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  margin-top: 20px;
 }
 
-.header .link{
-    font-size: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 3px;
-    cursor: pointer;
-
+.header .link {
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
 }
 
-.header .link svg{
-    color: var(--color);
-    height: 18px;
-    width: 18px;
+.header .link svg {
+  color: var(--color);
+  height: 18px;
+  width: 18px;
 }
 
-.main{
-    display: flex;
-    gap: 30px;
+.main {
+  display: flex;
+  gap: 30px;
 }
 
-.col1{
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    flex: 1.3;
+.col1 {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  flex: 1.3;
 }
 
-.col2{
-    display: flex;
-    gap: 20px;
-    flex: 1;
-    flex-direction: column;
+.col2 {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  flex-direction: column;
 }
 
-.section .sectionTitle{
-    font-size: 1.4rem;
-    font-weight: bold;
-    width: 100%;
-    border-bottom: 1px solid #000;
+.section .sectionTitle {
+  font-size: 1.4rem;
+  font-weight: bold;
+  width: 100%;
+  border-bottom: 1px solid #000;
 }
 
-.section .content{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 10px 0;
+.section .content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px 0;
 }
 
-.section .content .item:last-child{
-    border-bottom: none;
+.section .content .item:last-child {
+  border-bottom: none;
 }
 
-.section .content .item{
-    border-bottom: 1px dotted lightgray;
-    gap: 5px;
-    flex-direction: column;
-    
+.section .content .item {
+  border-bottom: 1px dotted lightgray;
+  gap: 5px;
+  flex-direction: column;
 }
 
-.content .title{
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.8rem;
+.content .title {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.8rem;
 }
 
-.content .subTitle{
-    font-weight: bold;
-    color: var(--color);
-    font-size: 1rem;
+.content .subTitle {
+  font-weight: bold;
+  color: var(--color);
+  font-size: 1rem;
 }
 
-.content .overview{
-    font-size: 1rem;
+.content .overview {
+  font-size: 1rem;
 }
 
-.content .link{
-    display: flex;
-    gap: 5px;
-    font-size: 0.75rem;
-    cursor: pointer;
-    color: var(--color);
+.content .link {
+  display: flex;
+  gap: 5px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  color: var(--color);
 }
 
-.content .link a:visited{
-    color: var(--color);
+.content .link a:visited {
+  color: var(--color);
 }
 
-.content .link svg{
-    height: 14px;
-    width: 14px;
-
+.content .link svg {
+  height: 14px;
+  width: 14px;
 }
 
-.content .date, .content .location{
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    font-size: 0.9rem;
+.content .date,
+.content .location {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 0.9rem;
 }
 
-.content .date svg, .content .location svg{
-    height: 14px;
-    width: 14px;
+.content .date svg,
+.content .location svg {
+  height: 14px;
+  width: 14px;
 }
 
-.content .points, .numbered{
-    padding-left: 18px;
-    font-size: 0.9rem;
+.content .points,
+.numbered {
+  padding-left: 18px;
+  font-size: 0.9rem;
 }
 
-
-.numbered li{
-    list-style-type: decimal;
+.numbered li {
+  list-style-type: decimal;
 }
 
-
-.hidden{
-    display: none;
+.hidden {
+  display: none;
 }
