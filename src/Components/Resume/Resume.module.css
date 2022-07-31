@@ -4,4 +4,45 @@
     height: fit-content;
     flex: 1;
     box-shadow: 0px 1px 2px 0px, rgba(60, 64, 67, 0.15);
+
+    --color: #3a7bd5;
 }
+
+.header{
+    display: flex;
+    flex-direction: column;
+    /* gap:10px; */
+}
+
+.header .heading{
+    font-size: 2.7rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.header .subHeading{
+    color: var(--color);
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.header .links{
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    margin-top: 20px;
+}
+
+.header .link{
+    font-size: 0.8rem;
+
+}
+
+.header .link svg{
+    color: var(--color);
+    height: 18px;
+    width: 18px;
+}
+
+
