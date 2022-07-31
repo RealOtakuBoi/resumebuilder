@@ -123,6 +123,10 @@
     color: var(--color);
 }
 
+.content .link a:visited{
+    color: var(--color);
+}
+
 .content .link svg{
     height: 14px;
     width: 14px;

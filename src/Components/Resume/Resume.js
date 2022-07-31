@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Styles from "./Resume.module.css";
 
@@ -14,6 +14,8 @@ function Resume(props) {
   const [column, setColumn] = useState([[], []]);
   const [target, seTarget] = useState("");
   const [source, setSource] = useState("");
+
+  const containerRef = useRef()
 
   const info = {
     workExp: information[sections.workExp],
@@ -308,8 +310,14 @@ function Resume(props) {
 
   },[information])
 
+  useEffect(()=> {
+    const container = containerRef.current;
+    if(!props.activeColor || !container) return;
+    container.style.setProperty('--color',props.activeColor)
+  },[props.activeColor])
+
   return (
-    <div className={Styles.container}>
+    <div ref={containerRef} className={Styles.container}>
       <div className={Styles.header}>
         <p className={Styles.heading}>{info.basicInfo?.detail?.name}</p>
         <p className={Styles.subHeading}>{info.basicInfo?.detail?.title}</p>

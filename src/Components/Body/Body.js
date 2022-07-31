@@ -7,7 +7,7 @@ import Resume from '../Resume/Resume'
 
 export const Body = () => {
 
-    const colors = ['#239ce2', '#48bb78', '#0bc5ea', '#a0a3c0', '#ed8936'];
+    const colors = ['#239ce2', '#48bb78', '#DC143C', '#a0a3c0', '#ed8936','#A020F0','#FFD700','#FFC0CB'];
     const sections = {
         basicInfo : 'Basic Info',
         workExp : 'Work Experience',
@@ -17,6 +17,8 @@ export const Body = () => {
         summary : 'Summary',
         other : 'Other'
     }
+
+    const[activeColor, setActiveColor] = useState(colors[0]);
 
     const [resumeInformation, setResumeInformation] = useState({
         [sections.basicInfo]: {
@@ -65,7 +67,10 @@ export const Body = () => {
             <div className={styles.colors}>
                 {
                     colors.map((item => (
-                        <span key={item} style={{background: item}} className={styles.color}></span>
+                        <span key={item} style={{background: item}} className={`${styles.color} ${
+                          activeColor === item ? styles.active : ""
+                        }`}
+                        onClick={() => setActiveColor(item)}></span>
                     )))
                 }
                 <span className={styles.color}></span>
@@ -78,7 +83,7 @@ export const Body = () => {
         </div>
         <div className={styles.main}>
             <Editor sections = {sections} information = {resumeInformation} setInformation = {setResumeInformation}/>
-            <Resume information = {resumeInformation} sections = {sections}/>
+            <Resume information = {resumeInformation} sections = {sections}  activeColor={activeColor}/>
         </div>
     </div>
   )
