@@ -644,7 +644,9 @@ function Editor(props) {
                   <p>
                     {sections[activeSectionKey]} {index + 1}
                   </p>
-                  <X onClick={() => handleDeleteDetail(index)}/>
+                  <X onClick={(e) => {
+                    e.stopPropagation();
+                    handleDeleteDetail(index)}}/>
                 </div>
               ))
             : ""}

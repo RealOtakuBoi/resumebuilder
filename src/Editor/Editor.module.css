@@ -71,6 +71,7 @@
     padding: 4px 8px;
     background-color: #808080;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .chip p{
@@ -87,8 +88,8 @@
 }
 
 
-.chip .active{
-    background-color: goldenrod;
+.chips .active{
+    background-color: gold;
 }
 
 .chips .new{
