@@ -1,273 +1,266 @@
 import React, { forwardRef, useEffect, useRef, useState } from "react";
+import {
+  AtSign,
+  Calendar,
+  GitHub,
+  Linkedin,
+  MapPin,
+  Paperclip,
+  Phone,
+} from "react-feather";
 
-import Styles from "./Resume.module.css";
+import styles from "./Resume.module.css";
 
-import { Calendar, GitHub, MapPin } from "react-feather";
-import { Linkedin } from "react-feather";
-import { AtSign } from "react-feather";
-import { Phone } from "react-feather";
-import { Paperclip } from "react-feather";
+const Resume = forwardRef((props, ref) => {
+  const information = props.information;
+  const sections = props.sections;
+  const containerRef = useRef();
 
-const Resume = forwardRef((props,ref)=> {
-    const information = props.information;
-    const sections = props.sections;
-  const [column, setColumn] = useState([[], []]);
-  const [target, seTarget] = useState("");
+  const [columns, setColumns] = useState([[], []]);
   const [source, setSource] = useState("");
-
-  const containerRef = useRef()
+  const [target, seTarget] = useState("");
 
   const info = {
     workExp: information[sections.workExp],
     projects: information[sections.projects],
-    achievments: information[sections.achievement],
+    achievments: information[sections.achievments],
     education: information[sections.education],
     basicInfo: information[sections.basicInfo],
     summary: information[sections.summary],
     other: information[sections.other],
   };
 
-  const getFormattedDate = (value) =>{
-    if(!value) return ''
-    const date = new Date(value)
+  const getFormattedDate = (value) => {
+    if (!value) return "";
+    const date = new Date(value);
+
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-  }
+  };
 
-  const sectioDiv = {
-    [sections.workExp]:
-    <div
-     key={"workExp"} className={`${Styles.section} ${
-        info.workExp?.sectionTitle ? "" : Styles.hidden
-      }`}
-      draggable
-      onDragOver={() => seTarget(info.workExp?.id)}
-      onDragEnd={() => setSource(info.workExp?.id)}
+  const sectionDiv = {
+    [sections.workExp]: (
+      <div
+        key={"workexp"}
+        draggable
+        onDragOver={() => seTarget(info.workExp?.id)}
+        onDragEnd={() => setSource(info.workExp?.id)}
+        className={`${styles.section} ${
+          info.workExp?.sectionTitle ? "" : styles.hidden
+        }`}
       >
-    <div className={Styles.sectionTitle}>{info.workExp?.sectionTitle}</div>
-    <div className={Styles.content}>
-      {
-          info.workExp?.details?.map((item) => (
-              <div className={Styles.item} key={item.title}>
-              {
-                  item.title &&
-              <p className={Styles.title}>{item.title}</p>
-              }
-
-              {
-                  item.companyName &&
-          <p className={Styles.subTitle}>{item.companyName}</p>
-              }
-
-              {
-                  item.certificationLink && 
-          <a className={Styles.link} href ={item.certificationLink}>
-              <Paperclip/>
-              {item.certificationLink}
-          </a>
-              }
-
-              {
-              item.startDate && item.endDate ? (
-                  <div className={Styles.date}>
-                    <Calendar /> {getFormattedDate(item.startDate)}-
-                    {getFormattedDate(item.endDate)}
-                  </div>   ) : (
-                      <div/>
-                  )}
-              
-
-              {
-                  item.location && 
-          <p className={Styles.location}>
-              <MapPin/>
-              {item.location}
-              </p>
-              }
-
-              {
-                  item.points?.length > 0 && 
-                  <ul className={Styles.points}>
-                      {
-                          item.points?.map((elem, index) => (
-                              <li className={Styles.point} key={elem+index}>
-                                  {elem}
-                                  </li>
-                          ))
-                      }
-                  </ul>
-              }
-                  
-              
-
-      </div>
-          ))
-      }
-      
-    </div>
-  </div>,
-
-    [sections.projects]:
-    <div key={"projects"} className={`${Styles.section} ${
-        info.projects?.sectionTitle ? "" : Styles.hidden
-      }`}
-      draggable
-      onDragOver={() => seTarget(info.projects?.id)}
-      onDragEnd={() => setSource(info.projects?.id)}
-      >
-    <div className={Styles.sectionTitle}>{info.projects?.sectionTitle}</div>
-    <div className={Styles.content}>
-      {
-          info.projects?.details?.map((item) => (
-              <div className={Styles.item}>
-                  {
-                      item.title &&
-          <p className={Styles.title}>{item.title}</p>
-                  }
-
-                  {
-                      item.link && 
-          <a className={Styles.link} href={item.link}>
-              <Paperclip/>
-              {item.link}
-          </a>
-                  }
-
-                  {
-                      item.github && 
-          <a className={Styles.link} href ={item.github}>
-              <GitHub/>
-              {item.github}
-          </a>
-                  }
-
-                  {
-                      item.overview &&
-          <p className={Styles.overview}>{item.overview}</p>
-                  }
-
-
-
-{
-                  item.points?.length > 0 && 
-                  <ul className={Styles.points}>
-                      {
-                          item.points?.map((elem, index) => (
-                              <li className={Styles.point} key={elem+index}>
-                                  {elem}
-                                  </li>
-                          ))
-                      }
-                  </ul>
-              }
-      </div>
-          ))
-      }
-      
-    </div>
-  </div>,
-
-    [sections.education]:
-    <div key={"education"} className={`${Styles.section} ${
-        info.education?.sectionTitle ? "" : Styles.hidden
-      }`}
-      draggable
-      onDragOver={() => seTarget(info.education?.id)}
-      onDragEnd={() => setSource(info.education?.id)}>
-      <div className={Styles.sectionTitle}>{info.education?.sectionTitle}</div>
-      <div className={Styles.content}>
-        {
-            info.education?.details?.map((item) => (
-                <div className={Styles.item}>
-                    {
-                        item.title &&
-            <p className={Styles.title}>{item.title}</p>
-                    }
-
-                    {
-                        item.college &&
-            <p className={Styles.subTitle}>{item.college}</p>
-                    }
-
-                    {
-
-                    }
-
-
-                    {
-                item.startDate && item.endDate ? (
-                    <div className={Styles.date}>
-                      <Calendar /> {getFormattedDate(item.startDate)}-
-                      {getFormattedDate(item.endDate)}
-                    </div>   ) : (
-                        <div/>
-                    )}
+        <div className={styles.sectionTitle}>{info.workExp.sectionTitle}</div>
+        <div className={styles.content}>
+          {info.workExp?.details?.map((item) => (
+            <div className={styles.item} key={item.title}>
+              {item.title ? (
+                <p className={styles.title}>{item.title}</p>
+              ) : (
+                <span />
+              )}
+              {item.companyName ? (
+                <p className={styles.subTitle}>{item.companyName}</p>
+              ) : (
+                <span />
+              )}
+              {item.certificationLink ? (
+                <a className={styles.link} href={item.certificationLink}>
+                  <Paperclip />
+                  {item.certificationLink}
+                </a>
+              ) : (
+                <span />
+              )}
+              {item.startDate && item.endDate ? (
+                <div className={styles.date}>
+                  <Calendar /> {getFormattedDate(item.startDate)}-
+                  {getFormattedDate(item.endDate)}
+                </div>
+              ) : (
+                <div />
+              )}
+              {item.location ? (
+                <p className={styles.date}>
+                  <MapPin /> Remote
+                </p>
+              ) : (
+                <span />
+              )}
+              {item.points?.length > 0 ? (
+                <ul className={styles.points}>
+                  {item.points?.map((elem, index) => (
+                    <li className={styles.point} key={elem + index}>
+                      {elem}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <span />
+              )}
             </div>
-            ))
-        }
-        
-    </div>
-    </div>,
-
-    [sections.achievments]:
-    <div
-        key={"achievement"}
-        className={`${Styles.section} ${Styles.achievments}`}
+          ))}
+        </div>
+      </div>
+    ),
+    [sections.projects]: (
+      <div
+        key={"projects"}
+        draggable
+        onDragOver={() => seTarget(info.projects?.id)}
+        onDragEnd={() => setSource(info.projects?.id)}
+        className={`${styles.section} ${
+          info.projects?.sectionTitle ? "" : styles.hidden
+        }`}
+      >
+        <div className={styles.sectionTitle}>{info.projects.sectionTitle}</div>
+        <div className={styles.content}>
+          {info.projects?.details?.map((item) => (
+            <div className={styles.item}>
+              {item.title ? (
+                <p className={styles.title}>{item.title}</p>
+              ) : (
+                <span />
+              )}
+              {item.link ? (
+                <a className={styles.link} href={item.link}>
+                  <Paperclip />
+                  {item.link}
+                </a>
+              ) : (
+                <span />
+              )}
+              {item.github ? (
+                <a className={styles.link} href={item.github}>
+                  <GitHub />
+                  {item.github}
+                </a>
+              ) : (
+                <span />
+              )}
+              {item.overview ? (
+                <p className={styles.overview}>{item.overview} </p>
+              ) : (
+                <span />
+              )}
+              {item.points?.length > 0 ? (
+                <ul className={styles.points}>
+                  {item.points?.map((elem, index) => (
+                    <li className={styles.point} key={elem + index}>
+                      {elem}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <span />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
+    [sections.education]: (
+      <div
+        key={"education"}
+        draggable
+        onDragOver={() => seTarget(info.education?.id)}
+        onDragEnd={() => setSource(info.education?.id)}
+        className={`${styles.section} ${
+          info.education?.sectionTitle ? "" : styles.hidden
+        }`}
+      >
+        <div className={styles.sectionTitle}>
+          {info.education?.sectionTitle}
+        </div>
+        <div className={styles.content}>
+          {info.education?.details?.map((item) => (
+            <div className={styles.item}>
+              {item.title ? (
+                <p className={styles.title}>{item.title}</p>
+              ) : (
+                <span />
+              )}
+              {item.college ? (
+                <p className={styles.subTitle}>Some college name</p>
+              ) : (
+                <span />
+              )}
+              {item.startDate && item.endDate ? (
+                <div className={styles.date}>
+                  <Calendar /> {getFormattedDate(item.startDate)} -
+                  {getFormattedDate(item.endDate)}
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
+    [sections.achievments]: (
+      <div
+        key={"achievments"}
         draggable
         onDragOver={() => seTarget(info.achievments?.id)}
         onDragEnd={() => setSource(info.achievments?.id)}
-        >
-         <div className={Styles.sectionTitle}>
-          {/* {info.achievments?.sectionTitle} */}
-          Achievements
+        className={`${styles.section} ${
+          info.achievments?.sectionTitle ? "" : styles.hidden
+        }`}
+      >
+        <div className={styles.sectionTitle}>
+          {info.achievments?.sectionTitle}
         </div>
-        <div className={Styles.content}>
-        {
-                    info.achievments?.points?.length > 0 && 
-                    <ul className={Styles.numbered}>
-                        {
-                            info.achievments?.points?.map((elem, index) => (
-                                <li className={Styles.points} key={elem+index}>
-                                    {elem}
-                                    </li>
-                            ))
-                        }
-                    </ul>
-                }
+        <div className={styles.content}>
+          {info.achievments?.points?.length > 0 ? (
+            <ul className={styles.numbered}>
+              {info.achievments?.points?.map((elem, index) => (
+                <li className={styles.point} key={elem + index}>
+                  {elem}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <span />
+          )}
         </div>
-      </div>,
-
-    [sections.summary]:
-    <div key={"summary"} className={`${Styles.section} ${
-        info.summary?.sectionTitle ? "" : Styles.hidden
-      }`}
-      draggable
-      onDragOver={() => seTarget(info.summary?.id)}
-      onDragEnd={() => setSource(info.summary?.id)}>
-      <div className={Styles.sectionTitle}>{info.summary?.sectionTitle}</div>
-      <div className={Styles.content}>
-        <p className={Styles.overview}>{info.summary?.summary}</p>
       </div>
-    </div>,
-
-    [sections.other]:
-    <div key={"other"} className={`${Styles.section} ${
-        info.other?.sectionTitle ? "" : Styles.hidden
-      }`}
-      draggable
-      onDragOver={() => seTarget(info.other?.id)}
-      onDragEnd={() => setSource(info.other?.id)}>
-      <div className={Styles.sectionTitle}>{info.other?.sectionTitle}</div>
-      <div className={Styles.content}>
-        <p className={Styles.overview}>{info.other?.detail}</p>
+    ),
+    [sections.summary]: (
+      <div
+        key={"summary"}
+        draggable
+        onDragOver={() => seTarget(info.summary?.id)}
+        onDragEnd={() => setSource(info.summary?.id)}
+        className={`${styles.section} ${
+          info.summary?.sectionTitle ? "" : styles.hidden
+        }`}
+      >
+        <div className={styles.sectionTitle}>{info.summary?.sectionTitle}</div>
+        <div className={styles.content}>
+          <p className={styles.overview}>{info.summary?.detail}</p>
+        </div>
       </div>
-    </div>
-
-
-  }
+    ),
+    [sections.other]: (
+      <div
+        key={"other"}
+        draggable
+        onDragOver={() => seTarget(info.other?.id)}
+        onDragEnd={() => setSource(info.other?.id)}
+        className={`${styles.section} ${
+          info.other?.sectionTitle ? "" : styles.hidden
+        }`}
+      >
+        <div className={styles.sectionTitle}>{info.other?.sectionTitle}</div>
+        <div className={styles.content}>
+          <p className={styles.overview}>{info?.other?.detail}</p>
+        </div>
+      </div>
+    ),
+  };
 
   const swapSourceTarget = (source, target) => {
-    if(!source || !target) return;
-    const tempColumns = [[...column[0]], [...column[1]]];
+    if (!source || !target) return;
+    const tempColumns = [[...columns[0]], [...columns[1]]];
 
     let sourceRowIndex = tempColumns[0].findIndex((item) => item === source);
     let sourceColumnIndex = 0;
@@ -289,85 +282,75 @@ const Resume = forwardRef((props,ref)=> {
 
     tempColumns[targetColumnIndex][targetRowIndex] = tempSource;
 
-    setColumn(tempColumns);
-  }
+    setColumns(tempColumns);
+  };
 
   useEffect(() => {
-    setColumn([
+    setColumns([
       [sections.projects, sections.education, sections.summary],
-
-      [sections.workExp,sections.achievments ,sections.other ],
+      [sections.workExp, sections.achievments, sections.other],
     ]);
   }, []);
 
+  useEffect(() => {
+    swapSourceTarget(source, target);
+  }, [source]);
 
   useEffect(() => {
-    swapSourceTarget(source, target)
-  },[source])
-
-
-  useEffect(() => {
-
-  },[information])
-
-  useEffect(()=> {
     const container = containerRef.current;
-    if(!props.activeColor || !container) return;
-    container.style.setProperty('--color',props.activeColor)
-  },[props.activeColor])
+    if (!props.activeColor || !container) return;
+
+    container.style.setProperty("--color", props.activeColor);
+  }, [props.activeColor]);
 
   return (
     <div ref={ref}>
-    <div ref={containerRef} className={Styles.container}>
-      <div className={Styles.header}>
-        <p className={Styles.heading}>{info.basicInfo?.detail?.name}</p>
-        <p className={Styles.subHeading}>{info.basicInfo?.detail?.title}</p>
+      <div ref={containerRef} className={styles.container}>
+        <div className={styles.header}>
+          <p className={styles.heading}>{info.basicInfo?.detail?.name}</p>
+          <p className={styles.subHeading}>{info.basicInfo?.detail?.title}</p>
 
-        <div className={Styles.links}>
+          <div className={styles.links}>
+            {info.basicInfo?.detail?.email ? (
+              <a className={styles.link} type="email">
+                <AtSign /> {info.basicInfo?.detail?.email}
+              </a>
+            ) : (
+              <span />
+            )}
+            {info.basicInfo?.detail?.phone ? (
+              <a className={styles.link}>
+                <Phone /> {info.basicInfo?.detail?.phone}
+              </a>
+            ) : (
+              <span />
+            )}
+            {info.basicInfo?.detail?.linkedin ? (
+              <a className={styles.link}>
+                <Linkedin /> {info.basicInfo?.detail?.linkedin}
+              </a>
+            ) : (
+              <span />
+            )}
+            {info.basicInfo?.detail?.github ? (
+              <a className={styles.link}>
+                <GitHub /> {info.basicInfo?.detail?.github}
+              </a>
+            ) : (
+              <span />
+            )}
+          </div>
+        </div>
 
-            {
-                info.basicInfo?.detail?.email && 
-          <a className={Styles.link} type='email'>
-            <AtSign />
-            {info.basicInfo?.detail?.email}
-          </a>
-            }
-
-            {
-                info.basicInfo?.detail?.linkedin &&
-          <a className={Styles.link} href={info.basicInfo?.detail?.linkedin}>
-            <Linkedin />
-            {info.basicInfo?.detail?.linkedin}
-          </a>
-            }
-
-            {
-                info.basicInfo?.detail?.github && 
-          <a className={Styles.link} href={info.basicInfo?.detail?.github}>
-            <GitHub />
-            {info.basicInfo?.detail?.github}
-          </a>
-            }
-
-          {
-            info.basicInfo?.detail?.phone &&
-          <a className={Styles.link}>
-            <Phone />
-            {info.basicInfo?.detail?.phone}
-          </a>
-          }
-
+        <div className={styles.main}>
+          <div className={styles.col1}>
+            {columns[0].map((item) => sectionDiv[item])}
+          </div>
+          <div className={styles.col2}>
+            {columns[1].map((item) => sectionDiv[item])}
+          </div>
         </div>
       </div>
-      <div className={Styles.main}>
-        <div className={Styles.col1}>{
-            column[0].map((item)=>sectioDiv[item])
-        }</div>
-        <div className={Styles.col2}>{
-            column[1].map((item)=>sectioDiv[item])
-        }</div>
-      </div>
-    </div>
     </div>
   );
 });
