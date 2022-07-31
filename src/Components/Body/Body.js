@@ -78,7 +78,7 @@ export const Body = () => {
         </div>
         <div className={styles.main}>
             <Editor sections = {sections} information = {resumeInformation} setInformation = {setResumeInformation}/>
-            <Resume/>
+            <Resume information = {resumeInformation} sections = {sections}/>
         </div>
     </div>
   )
