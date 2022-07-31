@@ -152,4 +152,6 @@
 }
 
 
-
+.hidden{
+    display: none;
+}

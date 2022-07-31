@@ -12,6 +12,8 @@ function Resume(props) {
     const information = props.information;
     const sections = props.sections;
   const [column, setColumn] = useState([[], []]);
+  const [target, seTarget] = useState("");
+  const [source, setSource] = useState("");
 
   const info = {
     workExp: information[sections.workExp],
@@ -31,7 +33,14 @@ function Resume(props) {
 
   const sectioDiv = {
     [sections.workExp]:
-    <div key={"workExp"} className={`${Styles.section} ${Styles.workExp}`}>
+    <div
+     key={"workExp"} className={`${Styles.section} ${
+        info.workExp?.sectionTitle ? "" : Styles.hidden
+      }`}
+      draggable
+      onDragOver={() => seTarget(info.workExp?.id)}
+      onDragEnd={() => setSource(info.workExp?.id)}
+      >
     <div className={Styles.sectionTitle}>{info.workExp?.sectionTitle}</div>
     <div className={Styles.content}>
       {
@@ -96,7 +105,13 @@ function Resume(props) {
   </div>,
 
     [sections.projects]:
-    <div key={"projects"} className={`${Styles.section} ${Styles.projects}`}>
+    <div key={"projects"} className={`${Styles.section} ${
+        info.projects?.sectionTitle ? "" : Styles.hidden
+      }`}
+      draggable
+      onDragOver={() => seTarget(info.projects?.id)}
+      onDragEnd={() => setSource(info.projects?.id)}
+      >
     <div className={Styles.sectionTitle}>{info.projects?.sectionTitle}</div>
     <div className={Styles.content}>
       {
@@ -150,7 +165,12 @@ function Resume(props) {
   </div>,
 
     [sections.education]:
-    <div key={"education"} className={`${Styles.section} ${Styles.education}`}>
+    <div key={"education"} className={`${Styles.section} ${
+        info.education?.sectionTitle ? "" : Styles.hidden
+      }`}
+      draggable
+      onDragOver={() => seTarget(info.education?.id)}
+      onDragEnd={() => setSource(info.education?.id)}>
       <div className={Styles.sectionTitle}>{info.education?.sectionTitle}</div>
       <div className={Styles.content}>
         {
@@ -190,9 +210,13 @@ function Resume(props) {
     <div
         key={"achievement"}
         className={`${Styles.section} ${Styles.achievments}`}
-      >
+        draggable
+        onDragOver={() => seTarget(info.achievments?.id)}
+        onDragEnd={() => setSource(info.achievments?.id)}
+        >
          <div className={Styles.sectionTitle}>
-          Achievments
+          {/* {info.achievments?.sectionTitle} */}
+          Achievements
         </div>
         <div className={Styles.content}>
         {
@@ -211,7 +235,12 @@ function Resume(props) {
       </div>,
 
     [sections.summary]:
-    <div key={"summary"} className={`${Styles.section} ${Styles.summary}`}>
+    <div key={"summary"} className={`${Styles.section} ${
+        info.summary?.sectionTitle ? "" : Styles.hidden
+      }`}
+      draggable
+      onDragOver={() => seTarget(info.summary?.id)}
+      onDragEnd={() => setSource(info.summary?.id)}>
       <div className={Styles.sectionTitle}>{info.summary?.sectionTitle}</div>
       <div className={Styles.content}>
         <p className={Styles.overview}>{info.summary?.summary}</p>
@@ -219,7 +248,12 @@ function Resume(props) {
     </div>,
 
     [sections.other]:
-    <div key={"other"} className={`${Styles.section} ${Styles.other}`}>
+    <div key={"other"} className={`${Styles.section} ${
+        info.other?.sectionTitle ? "" : Styles.hidden
+      }`}
+      draggable
+      onDragOver={() => seTarget(info.other?.id)}
+      onDragEnd={() => setSource(info.other?.id)}>
       <div className={Styles.sectionTitle}>{info.other?.sectionTitle}</div>
       <div className={Styles.content}>
         <p className={Styles.overview}>{info.other?.detail}</p>
@@ -229,6 +263,33 @@ function Resume(props) {
 
   }
 
+  const swapSourceTarget = (source, target) => {
+    if(!source || !target) return;
+    const tempColumns = [[...column[0]], [...column[1]]];
+
+    let sourceRowIndex = tempColumns[0].findIndex((item) => item === source);
+    let sourceColumnIndex = 0;
+    if (sourceRowIndex < 0) {
+      sourceColumnIndex = 1;
+      sourceRowIndex = tempColumns[1].findIndex((item) => item === source);
+    }
+
+    let targetRowIndex = tempColumns[0].findIndex((item) => item === target);
+    let targetColumnIndex = 0;
+    if (targetRowIndex < 0) {
+      targetColumnIndex = 1;
+      targetRowIndex = tempColumns[1].findIndex((item) => item === target);
+    }
+
+    const tempSource = tempColumns[sourceColumnIndex][sourceRowIndex];
+    tempColumns[sourceColumnIndex][sourceRowIndex] =
+      tempColumns[targetColumnIndex][targetRowIndex];
+
+    tempColumns[targetColumnIndex][targetRowIndex] = tempSource;
+
+    setColumn(tempColumns);
+  }
+
   useEffect(() => {
     setColumn([
       [sections.projects, sections.education, sections.summary],
@@ -236,6 +297,11 @@ function Resume(props) {
       [sections.workExp,sections.achievments ,sections.other ],
     ]);
   }, []);
+
+
+  useEffect(() => {
+    swapSourceTarget(source, target)
+  },[source])
 
 
   useEffect(() => {
