@@ -245,27 +245,43 @@ function Resume(props) {
   return (
     <div className={Styles.container}>
       <div className={Styles.header}>
-        <p className={Styles.heading}>Name</p>
-        <p className={Styles.subHeading}>Blockchain Developer</p>
+        <p className={Styles.heading}>{info.basicInfo?.detail?.name}</p>
+        <p className={Styles.subHeading}>{info.basicInfo?.detail?.title}</p>
 
         <div className={Styles.links}>
-          <a className={Styles.link}>
-            <AtSign />
-            abc@gmail.com
-          </a>
-          <a className={Styles.link}>
-            <Linkedin />
-            linkedin.com
-          </a>
-          <a className={Styles.link}>
-            <GitHub />
-            github.com
-          </a>
 
+            {
+                info.basicInfo?.detail?.email && 
+          <a className={Styles.link} type='email'>
+            <AtSign />
+            {info.basicInfo?.detail?.email}
+          </a>
+            }
+
+            {
+                info.basicInfo?.detail?.linkedin &&
+          <a className={Styles.link} href={info.basicInfo?.detail?.linkedin}>
+            <Linkedin />
+            {info.basicInfo?.detail?.linkedin}
+          </a>
+            }
+
+            {
+                info.basicInfo?.detail?.github && 
+          <a className={Styles.link} href={info.basicInfo?.detail?.github}>
+            <GitHub />
+            {info.basicInfo?.detail?.github}
+          </a>
+            }
+
+          {
+            info.basicInfo?.detail?.phone &&
           <a className={Styles.link}>
             <Phone />
-            1234567890
+            {info.basicInfo?.detail?.phone}
           </a>
+          }
+
         </div>
       </div>
       <div className={Styles.main}>
