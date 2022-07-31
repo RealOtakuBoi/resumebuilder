@@ -482,6 +482,20 @@ function Editor(props) {
     }
   };
 
+
+  const handleAddNew = () => {
+    const details = activeInformation?.details
+    if(!details) return;
+    details.push({});
+    const lastDetail = details.slice(-1)[0];
+    if(!Object.keys(lastDetail))return;
+    props.setInformation(prev => ({...prev,[sections[activeSectionKey]]:{...information[sections[activeSectionKey]],
+      details:details
+    },
+  }));
+    setActiveDetailIndex(details?.length)
+  }
+
   
 
 
@@ -614,7 +628,7 @@ function Editor(props) {
             : ""}
           {activeInformation?.details &&
           activeInformation?.details?.length > 0 ? (
-            <div className={styles.new}>
+            <div className={styles.new} onClick={handleAddNew}>
               +New
             </div>
           ) : (
