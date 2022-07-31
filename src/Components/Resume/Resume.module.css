@@ -55,4 +55,42 @@
     width: 18px;
 }
 
+.main{
+    display: flex;
+    gap: 30px;
+}
+
+.col1{
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    flex: 1.3;
+}
+
+.col2{
+    display: flex;
+    gap: 30px;
+    flex: 1;
+    flex-direction: column;
+}
+
+.section .sectionTitle{
+    font-size: 1.4rem;
+    font-weight: 500;
+    width: 100%;
+    border-bottom: 1px solid #000;
+}
+
+.section .content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section .content > div{
+    border-bottom: 1px dotted lightgray;
+    
+}
+
+
 
