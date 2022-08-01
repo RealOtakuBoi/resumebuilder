@@ -1,4 +1,4 @@
-Live Preview Link: 
+Live Preview Link: https://cv-resume-maker.netlify.app/
 
 
 # Getting Started with Create React App
