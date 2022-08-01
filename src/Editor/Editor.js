@@ -445,8 +445,8 @@ function Editor(props) {
 
         props.setInformation((prev) => ({
           ...prev,
-          [sections.achievements]: {
-            ...prev[sections.achievements],
+          [sections.achievments]: {
+            ...prev[sections.achievments],
             points: tempPoints,
             sectionTitle,
           },
