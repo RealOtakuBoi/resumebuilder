@@ -1,4 +1,4 @@
-Live Preview Link: https://cooler-resume-maker.netlify.app/
+Live Preview Link: 
 
 
 # Getting Started with Create React App
